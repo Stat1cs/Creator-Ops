@@ -1,0 +1,169 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "@/lib/gsap";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+import LightRays from "@/components/ui/LightRays";
+import ShinyText from "@/components/ui/ShinyText";
+import MagneticButton from "@/components/ui/MagneticButton";
+
+function splitChars(text: string) {
+  return text.split("").map((ch, i) => (
+    <span key={i} className="char" aria-hidden="true">
+      <span>{ch === " " ? "\u00a0" : ch}</span>
+    </span>
+  ));
+}
+
+export default function Hero() {
+  const line1 = useRef<HTMLSpanElement>(null);
+  const line2 = useRef<HTMLSpanElement>(null);
+  const fade = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    const chars = [
+      ...(line1.current?.querySelectorAll(".char > span") ?? []),
+      ...(line2.current?.querySelectorAll(".char > span") ?? []),
+    ];
+    const fadeEls = fade.current?.querySelectorAll<HTMLElement>("[data-fade]") ?? [];
+
+    if (reducedMotion) {
+      gsap.set(chars, { y: "0%", opacity: 1 });
+      gsap.set(fadeEls, { y: 0, opacity: 1 });
+      return;
+    }
+
+    const tl = gsap.timeline({ delay: 0.25 });
+    tl.to(chars, {
+      y: "0%",
+      opacity: 1,
+      duration: 0.9,
+      ease: "power4.out",
+      stagger: 0.018,
+    });
+    tl.fromTo(
+      fadeEls,
+      { y: 22, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", stagger: 0.12 },
+      "-=0.5"
+    );
+    return () => {
+      tl.kill();
+    };
+  }, [reducedMotion]);
+
+  return (
+    <section className="relative min-h-svh flex items-center justify-center overflow-hidden dot-grid">
+      {!reducedMotion && (
+        <div className="absolute inset-0 z-0 pointer-events-none [filter:brightness(4.5)] md:[filter:none]">
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="#ffffff"
+            raysSpeed={1}
+            lightSpread={1.7}
+            rayLength={3}
+            followMouse
+            mouseInfluence={0.6}
+            noiseAmount={0.01}
+            distortion={0}
+            pulsating
+            fadeDistance={1.5}
+            saturation={1.6}
+            className="custom-rays"
+          />
+        </div>
+      )}
+
+      {/* vignette + bottom fade */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-[2] pointer-events-none bg-[radial-gradient(ellipse_80%_70%_at_50%_42%,transparent,var(--color-bg)_94%)]"
+      />
+      {/* gentle scrim so headline stays readable while the beams show through */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-[3] pointer-events-none bg-[radial-gradient(ellipse_42%_34%_at_50%_52%,rgba(10,8,7,0.32),transparent_72%)]"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 inset-x-0 z-[2] h-48 pointer-events-none bg-gradient-to-t from-bg to-transparent"
+      />
+
+      <div
+        ref={fade}
+        className="relative z-10 w-full max-w-5xl mx-auto px-5 sm:px-8 text-center pt-28 sm:pt-32 pb-20"
+      >
+        <div
+          data-fade
+          className="inline-flex items-center gap-2.5 mb-8 rounded-full border border-line bg-card/70 backdrop-blur px-4 py-1.5 text-xs"
+          style={{ opacity: 0 }}
+        >
+          <span className="pulse-dot" aria-hidden="true" />
+          <ShinyText text="Accepting 3 founding creators — $0 setup fee" />
+        </div>
+
+        <h1 className="display-xl" aria-label="A 24/7 AI version of you.">
+          <span ref={line1} className="block">
+            {splitChars("A 24/7 AI version")}
+          </span>
+          <span ref={line2} className="block">
+            {splitChars("of ")}
+            <span className="char">
+              <span className="font-serif-i text-ember">you.</span>
+            </span>
+          </span>
+        </h1>
+
+        <p
+          data-fade
+          className="lede mt-8 max-w-2xl mx-auto"
+          style={{ opacity: 0 }}
+        >
+          Creator Ops builds and operates branded AI platforms for coaches and
+          course creators — trained on your content, your voice, your
+          frameworks. Deployed everywhere your students already are.
+        </p>
+
+        <div
+          data-fade
+          className="mt-10 flex flex-col sm:flex-row gap-3.5 justify-center items-center"
+          style={{ opacity: 0 }}
+        >
+          <MagneticButton href="/apply">
+            Apply for a spot
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.4} aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </MagneticButton>
+          <MagneticButton href="#demo" variant="ghost" strength={0.25}>
+            Try the live AI demo
+          </MagneticButton>
+        </div>
+
+        <div
+          data-fade
+          className="mt-12 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[0.72rem] tracking-wider uppercase text-dim"
+          style={{ opacity: 0 }}
+        >
+          {["Coaches", "Course creators", "Niche educators", "10K–100K audiences"].map(
+            (t, i) => (
+              <span key={t} className="inline-flex items-center gap-3">
+                {i > 0 && <span className="text-accent/60">/</span>}
+                {t}
+              </span>
+            )
+          )}
+        </div>
+      </div>
+
+      <div
+        aria-hidden="true"
+        className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-dim"
+      >
+        <span className="text-[0.6rem] tracking-[0.3em] uppercase">Scroll</span>
+        <span className="w-px h-9 bg-gradient-to-b from-mut to-transparent" />
+      </div>
+    </section>
+  );
+}
