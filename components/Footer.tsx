@@ -4,19 +4,19 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "Product",
     links: [
-      { label: "How it works", href: "#how-it-works" },
-      { label: "Live demo", href: "#demo" },
-      { label: "Channels", href: "#channels" },
-      { label: "Pricing", href: "#pricing" },
-      { label: "FAQ", href: "#faq" },
+      { label: "How it works", href: "/#how-it-works" },
+      { label: "Live demo", href: "/#demo" },
+      { label: "Channels", href: "/#channels" },
+      { label: "Pricing", href: "/#pricing" },
+      { label: "FAQ", href: "/#faq" },
     ],
   },
   {
     title: "Program",
     links: [
-      { label: "Founding program", href: "#founding" },
+      { label: "Founding program", href: "/#founding" },
       { label: "Apply now", href: "/apply" },
-      { label: "What you own", href: "#how-it-works" },
+      { label: "What you own", href: "/#how-it-works" },
     ],
   },
   {

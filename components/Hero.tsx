@@ -120,9 +120,11 @@ export default function Hero() {
           className="lede mt-8 max-w-2xl mx-auto"
           style={{ opacity: 0 }}
         >
-          Creator Ops builds and operates branded AI platforms for coaches and
-          course creators — trained on your content, your voice, your
-          frameworks. Deployed everywhere your students already are.
+          Creator Ops builds and operates branded AI platforms
+          <br />
+          Trained on your content, your voice, your frameworks
+          <br />
+          and your students can pay to access it.
         </p>
 
         <div

@@ -7,10 +7,10 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 import Logo from "@/components/Logo";
 
 const LINKS = [
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Channels", href: "#channels" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
+  { label: "How it works", href: "/#how-it-works" },
+  { label: "Channels", href: "/#channels" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "FAQ", href: "/#faq" },
 ] as const;
 
 export default function Nav() {
