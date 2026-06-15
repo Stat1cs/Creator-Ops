@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import Logo from "@/components/Logo";
 
 const LINKS = [
   { label: "How it works", href: "#how-it-works" },
@@ -65,15 +66,10 @@ export default function Nav() {
         >
           <Link
             href="/"
-            className="flex items-center gap-2.5 shrink-0 mr-1 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+            className="flex items-center shrink-0 mr-1 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
             aria-label="Creator Ops home"
           >
-            <span className="relative w-8 h-8 rounded-lg flex items-center justify-center text-[11px] font-black text-[#1a0d02] font-display bg-gradient-to-b from-amber to-accent shadow-[0_4px_14px_rgba(249,115,22,0.4)]">
-              CO
-            </span>
-            <span className="text-ink font-display font-semibold text-[0.95rem] tracking-tight hidden sm:inline">
-              Creator Ops
-            </span>
+            <Logo wordmarkClassName="text-ink font-display font-semibold text-[0.95rem] tracking-tight hidden sm:inline" />
           </Link>
 
           <div className="hidden md:flex flex-1 items-center justify-center gap-0.5">

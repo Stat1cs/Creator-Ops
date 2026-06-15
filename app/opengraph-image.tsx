@@ -1,8 +1,15 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
+export const runtime = "nodejs";
 export const alt = "Creator Ops — Your AI Platform, Built and Operated";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+
+const logoSrc = `data:image/png;base64,${readFileSync(
+  join(process.cwd(), "public/android-chrome-512x512.png")
+).toString("base64")}`;
 
 export default function OpenGraphImage() {
   return new ImageResponse(
@@ -15,8 +22,8 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "72px 80px",
-          background: "#0a0a0a",
-          color: "#f5f1e8",
+          background: "#0a0807",
+          color: "#f8f4ec",
         }}
       >
         <div
@@ -27,22 +34,14 @@ export default function OpenGraphImage() {
             marginBottom: 48,
           }}
         >
-          <div
-            style={{
-              width: 48,
-              height: 48,
-              borderRadius: 8,
-              background: "#f97316",
-              color: "#0a0a0a",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 18,
-              fontWeight: 900,
-            }}
-          >
-            CO
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={logoSrc}
+            width={56}
+            height={56}
+            alt=""
+            style={{ borderRadius: 12 }}
+          />
           <span style={{ fontSize: 28, fontWeight: 600 }}>Creator Ops</span>
         </div>
         <div
@@ -60,7 +59,7 @@ export default function OpenGraphImage() {
           style={{
             marginTop: 28,
             fontSize: 28,
-            color: "#9b958a",
+            color: "#a89e8e",
             lineHeight: 1.5,
             maxWidth: 820,
           }}

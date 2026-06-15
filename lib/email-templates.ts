@@ -123,13 +123,7 @@ function emailLayout({
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" bgcolor="${BRAND.bg}" style="background-color:${BRAND.bg};">
                 <tr>
                   <td bgcolor="${BRAND.bg}" style="padding-right:10px;vertical-align:middle;background-color:${BRAND.bg};">
-                    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
-                      <tr>
-                        <td width="36" height="36" bgcolor="${BRAND.accent}" align="center" valign="middle" style="width:36px;height:36px;border-radius:10px;background-color:${BRAND.accent};font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:800;color:#1a0d02;">
-                          CO
-                        </td>
-                      </tr>
-                    </table>
+                    <img src="${siteUrl}/android-chrome-512x512.png" width="36" height="36" alt="Creator Ops" style="display:block;width:36px;height:36px;border-radius:10px;" />
                   </td>
                   <td bgcolor="${BRAND.bg}" class="email-ink" style="vertical-align:middle;background-color:${BRAND.bg};font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;color:${BRAND.ink};letter-spacing:-0.02em;">
                     Creator Ops

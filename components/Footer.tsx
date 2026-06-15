@@ -1,3 +1,5 @@
+import Logo from "@/components/Logo";
+
 const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "Product",
@@ -79,11 +81,8 @@ export default function Footer() {
         {/* Link columns */}
         <div className="relative z-10 px-6 sm:px-12 pt-14 sm:pt-16 pb-12 sm:pb-14 flex flex-col gap-10 md:flex-row md:justify-between">
           <div className="md:max-w-sm">
-            <div className="flex items-center gap-2.5 mb-4">
-              <span className="w-8 h-8 rounded-lg flex items-center justify-center text-[11px] font-black text-[#1a0d02] font-display bg-gradient-to-b from-amber to-accent">
-                CO
-              </span>
-              <span className="text-ink font-display font-semibold text-lg">Creator Ops</span>
+            <div className="mb-4">
+              <Logo wordmarkClassName="text-ink font-display font-semibold text-lg" />
             </div>
             <p className="text-mut text-sm leading-relaxed mb-6">
               Branded AI platforms for coaches and course creators. Trained on your
