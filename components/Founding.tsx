@@ -23,6 +23,12 @@ export default function Founding() {
       scope,
       [
         {
+          selector: ".reveal-title",
+          from: { y: 30 },
+          to: { y: 0, duration: 0.8, ease: "power2.out" },
+          start: "top 85%",
+        },
+        {
           selector: ".reveal-in",
           from: { y: 36, opacity: 0 },
           to: { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", stagger: 0.1 },
@@ -48,7 +54,7 @@ export default function Founding() {
               3 founding spots open
             </div>
 
-            <h2 className="reveal-in display-lg mb-5">
+            <h2 className="reveal-title display-lg mb-5">
               The Founding{" "}
               <span className="font-serif-i text-gradient">Creator Program.</span>
             </h2>

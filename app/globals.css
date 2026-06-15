@@ -116,6 +116,17 @@ body {
   color: transparent;
 }
 
+.scroll-line {
+  background: linear-gradient(
+    to bottom,
+    var(--color-ink) 0%,
+    var(--color-amber) 40%,
+    var(--color-accent) 70%,
+    transparent 100%
+  );
+}
+
+
 .text-ember {
   background: linear-gradient(100deg, var(--color-amber), var(--color-ember));
   -webkit-background-clip: text;
@@ -345,7 +356,7 @@ body {
 .marquee-track {
   display: flex;
   white-space: nowrap;
-  animation: marquee 36s linear infinite;
+  animation: marquee 30s linear infinite;
 }
 @keyframes marquee {
   0%   { transform: translateX(0); }

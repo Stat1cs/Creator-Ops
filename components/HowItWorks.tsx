@@ -39,6 +39,11 @@ export default function HowItWorks() {
       scope,
       [
         {
+          selector: ".reveal-title",
+          from: { y: 30 },
+          to: { y: 0, duration: 0.8, ease: "power2.out" },
+        },
+        {
           selector: ".reveal-head",
           from: { y: 28, opacity: 0 },
           to: { y: 0, opacity: 1, duration: 0.7, ease: "power2.out", stagger: 0.1 },
@@ -86,9 +91,9 @@ export default function HowItWorks() {
         <p className="reveal-head eyebrow mb-5">
           <span className="text-ember">02</span> The process
         </p>
-        <h2 className="reveal-head display-lg mb-16">
+        <h2 className="reveal-title display-lg mb-16">
           Done-for-you.{" "}
-          <span className="font-serif-i text-mut">start to finish.</span>
+          <span className="font-serif-i text-gradient">start to finish.</span>
         </h2>
 
         <div className="relative">

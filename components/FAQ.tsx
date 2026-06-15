@@ -42,6 +42,11 @@ export default function FAQ() {
       scope,
       [
         {
+          selector: ".reveal-title",
+          from: { y: 30 },
+          to: { y: 0, duration: 0.7, ease: "power2.out" },
+        },
+        {
           selector: ".reveal-head",
           from: { y: 28, opacity: 0 },
           to: { y: 0, opacity: 1, duration: 0.7, ease: "power2.out", stagger: 0.1 },
@@ -63,9 +68,9 @@ export default function FAQ() {
           <p className="reveal-head eyebrow justify-center mb-5">
             <span className="text-ember">06</span> Questions
           </p>
-          <h2 className="reveal-head display-lg">
+          <h2 className="reveal-title display-lg">
             The things creators{" "}
-            <span className="font-serif-i text-mut">actually ask.</span>
+            <span className="font-serif-i text-gradient">actually ask.</span>
           </h2>
         </div>
 

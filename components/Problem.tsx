@@ -34,6 +34,11 @@ export default function Problem() {
       scope,
       [
         {
+          selector: ".reveal-title",
+          from: { y: 30 },
+          to: { y: 0, duration: 0.8, ease: "power2.out" },
+        },
+        {
           selector: ".reveal-head",
           from: { y: 30, opacity: 0 },
           to: { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", stagger: 0.1 },
@@ -59,9 +64,9 @@ export default function Problem() {
         <p className="reveal-head eyebrow mb-5">
           <span className="text-ember">01</span> The gap
         </p>
-        <h2 className="reveal-head display-lg max-w-2xl mb-16">
+        <h2 className="reveal-title display-lg max-w-2xl mb-16">
           Your content works.{" "}
-          <span className="font-serif-i text-mut">your availability doesn&apos;t.</span>
+          <span className="font-serif-i text-gradient">your availability doesn&apos;t.</span>
         </h2>
 
         <div className="grid gap-5 md:grid-cols-3 mb-16">

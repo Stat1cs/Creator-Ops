@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import LightRays from "@/components/ui/LightRays";
+import Spotlight from "@/components/ui/Spotlight";
 import ShinyText from "@/components/ui/ShinyText";
 import MagneticButton from "@/components/ui/MagneticButton";
 
@@ -16,10 +16,32 @@ function splitChars(text: string) {
 }
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
   const line1 = useRef<HTMLSpanElement>(null);
   const line2 = useRef<HTMLSpanElement>(null);
   const fade = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [poolBottom, setPoolBottom] = useState("0px");
   const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    const hero = sectionRef.current;
+    if (!hero) return;
+
+    const updatePoolBottom = () => {
+      const scrollEl = scrollRef.current;
+      if (!scrollEl) return;
+
+      const heroRect = hero.getBoundingClientRect();
+      const scrollRect = scrollEl.getBoundingClientRect();
+      const fromHeroBottom = heroRect.bottom - scrollRect.bottom;
+      setPoolBottom(`${Math.max(0, fromHeroBottom)}px`);
+    };
+
+    updatePoolBottom();
+    window.addEventListener("resize", updatePoolBottom);
+    return () => window.removeEventListener("resize", updatePoolBottom);
+  }, []);
 
   useEffect(() => {
     const chars = [
@@ -54,45 +76,35 @@ export default function Hero() {
   }, [reducedMotion]);
 
   return (
-    <section className="relative min-h-svh flex items-center justify-center overflow-hidden dot-grid">
+    <section
+      ref={sectionRef}
+      className="relative min-h-svh flex flex-col overflow-hidden"
+    >
       {!reducedMotion && (
-        <div className="absolute inset-0 z-0 pointer-events-none [filter:brightness(2.2)] md:[filter:none]">
-          <LightRays
-            raysOrigin="top-center"
-            raysColor="#ffffff"
-            raysSpeed={1}
-            lightSpread={1.7}
-            rayLength={3}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <Spotlight
+            intensity={1}
+            poolBottom={poolBottom}
             followMouse
-            mouseInfluence={0.6}
-            noiseAmount={0.01}
-            distortion={0}
-            pulsating
-            fadeDistance={1.5}
-            saturation={1.6}
-            className="custom-rays"
+            mouseInfluence={0.14}
           />
         </div>
       )}
 
-      {/* vignette + bottom fade */}
+      {/* light edge vignette — keeps corners dark like the reference */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 z-[2] pointer-events-none bg-[radial-gradient(ellipse_80%_70%_at_50%_42%,transparent,var(--color-bg)_94%)]"
+        className="absolute inset-0 z-[2] pointer-events-none bg-[radial-gradient(ellipse_95%_85%_at_50%_48%,transparent_50%,rgba(0,0,0,0.45)_100%)]"
       />
-      {/* gentle scrim so headline stays readable while the beams show through */}
+      {/* minimal headline scrim */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 z-[3] pointer-events-none bg-[radial-gradient(ellipse_42%_34%_at_50%_52%,rgba(10,8,7,0.32),transparent_72%)]"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute bottom-0 inset-x-0 z-[2] h-48 pointer-events-none bg-gradient-to-t from-bg to-transparent"
+        className="absolute inset-0 z-[3] pointer-events-none bg-[radial-gradient(ellipse_34%_26%_at_50%_46%,rgba(0,0,0,0.22),transparent_68%)]"
       />
 
       <div
         ref={fade}
-        className="relative z-10 w-full max-w-5xl mx-auto px-5 sm:px-8 text-center pt-28 sm:pt-32 pb-12 sm:pb-20"
+        className="relative z-10 flex-1 flex flex-col items-center justify-center w-full max-w-5xl mx-auto px-5 sm:px-8 text-center pt-28 sm:pt-32 pb-8 sm:pb-10"
       >
         <div
           data-fade
@@ -145,36 +157,29 @@ export default function Hero() {
 
         <div
           data-fade
-          className="mt-12 mb-10 sm:mb-0 flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 sm:gap-x-3 text-[0.58rem] sm:text-[0.72rem] tracking-wide sm:tracking-wider uppercase text-dim"
+          className="mt-12 flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 sm:gap-x-3 text-[0.58rem] sm:text-[0.72rem] tracking-wide sm:tracking-wider uppercase text-ink"
           style={{ opacity: 0 }}
         >
           {["Coaches", "Course creators", "Niche educators"].map(
             (t, i) => (
               <span key={t} className="inline-flex items-center gap-3">
-                {i > 0 && <span className="text-accent/60">/</span>}
+                {i > 0 && <span className="text-gradient">/</span>}
                 {t}
               </span>
             )
           )}
         </div>
-
-        <div
-          data-fade
-          aria-hidden="true"
-          className="sm:hidden flex flex-col items-center gap-2 text-dim"
-          style={{ opacity: 0 }}
-        >
-          <span className="text-[0.6rem] tracking-[0.3em] uppercase">Scroll</span>
-          <span className="w-px h-9 bg-gradient-to-b from-mut to-transparent" />
-        </div>
       </div>
 
       <div
+        ref={scrollRef}
         aria-hidden="true"
-        className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center gap-2 text-dim"
+        className="relative z-10 shrink-0 flex flex-col items-center gap-2 pb-0"
       >
-        <span className="text-[0.6rem] tracking-[0.3em] uppercase">Scroll</span>
-        <span className="w-px h-9 bg-gradient-to-b from-mut to-transparent" />
+        <span className="text-[0.6rem] tracking-[0.3em] uppercase text-ink">
+          Scroll
+        </span>
+        <span className="w-px h-9 scroll-line" />
       </div>
     </section>
   );
