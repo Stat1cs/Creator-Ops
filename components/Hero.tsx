@@ -84,6 +84,7 @@ export default function Hero() {
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Spotlight
             intensity={1}
+            mobileIntensity={0.62}
             poolBottom={poolBottom}
             followMouse
             mouseInfluence={0.14}
