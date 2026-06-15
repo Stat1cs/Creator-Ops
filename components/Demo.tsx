@@ -98,7 +98,7 @@ export default function Demo() {
             title="Coach Jordan — Creator Ops Demo"
             allow="microphone"
             loading="lazy"
-            className="w-full border-0 block bg-bg min-h-[420px] h-[clamp(420px,72vh,700px)]"
+            className="w-full border-0 block bg-bg min-h-[560px] sm:min-h-[420px] h-[clamp(560px,85vh,700px)] sm:h-[clamp(420px,72vh,700px)]"
           />
         </div>
 

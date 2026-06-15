@@ -56,7 +56,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-svh flex items-center justify-center overflow-hidden dot-grid">
       {!reducedMotion && (
-        <div className="absolute inset-0 z-0 pointer-events-none [filter:brightness(4.5)] md:[filter:none]">
+        <div className="absolute inset-0 z-0 pointer-events-none [filter:brightness(2.5)] md:[filter:none]">
           <LightRays
             raysOrigin="top-center"
             raysColor="#ffffff"
@@ -145,7 +145,7 @@ export default function Hero() {
 
         <div
           data-fade
-          className="mt-12 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[0.72rem] tracking-wider uppercase text-dim"
+          className="mt-12 flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 sm:gap-x-3 text-[0.58rem] sm:text-[0.72rem] tracking-wide sm:tracking-wider uppercase text-dim"
           style={{ opacity: 0 }}
         >
           {["Coaches", "Course creators", "Niche educators", "10K–100K audiences"].map(
