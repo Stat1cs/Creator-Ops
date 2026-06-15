@@ -92,7 +92,7 @@ export default function Hero() {
 
       <div
         ref={fade}
-        className="relative z-10 w-full max-w-5xl mx-auto px-5 sm:px-8 text-center pt-28 sm:pt-32 pb-20"
+        className="relative z-10 w-full max-w-5xl mx-auto px-5 sm:px-8 text-center pt-28 sm:pt-32 pb-12 sm:pb-20"
       >
         <div
           data-fade
@@ -145,7 +145,7 @@ export default function Hero() {
 
         <div
           data-fade
-          className="mt-12 flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 sm:gap-x-3 text-[0.58rem] sm:text-[0.72rem] tracking-wide sm:tracking-wider uppercase text-dim"
+          className="mt-12 mb-10 sm:mb-0 flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 sm:gap-x-3 text-[0.58rem] sm:text-[0.72rem] tracking-wide sm:tracking-wider uppercase text-dim"
           style={{ opacity: 0 }}
         >
           {["Coaches", "Course creators", "Niche educators"].map(
@@ -157,11 +157,21 @@ export default function Hero() {
             )
           )}
         </div>
+
+        <div
+          data-fade
+          aria-hidden="true"
+          className="sm:hidden flex flex-col items-center gap-2 text-dim"
+          style={{ opacity: 0 }}
+        >
+          <span className="text-[0.6rem] tracking-[0.3em] uppercase">Scroll</span>
+          <span className="w-px h-9 bg-gradient-to-b from-mut to-transparent" />
+        </div>
       </div>
 
       <div
         aria-hidden="true"
-        className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-dim"
+        className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center gap-2 text-dim"
       >
         <span className="text-[0.6rem] tracking-[0.3em] uppercase">Scroll</span>
         <span className="w-px h-9 bg-gradient-to-b from-mut to-transparent" />
