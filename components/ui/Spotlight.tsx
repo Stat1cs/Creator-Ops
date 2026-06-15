@@ -120,11 +120,12 @@ float stageSpotlight(vec2 coord) {
   float edgeSoftness = 0.0;
   float panX = 0.0;
   if (mouseInfluence > 0.0) {
-    vec2 mouseScreen = mousePos * iResolution;
-    panX = (mouseScreen.x - targetPos.x) * mouseInfluence;
+    float maxPan = w / 5.0;
+    float t = clamp((mousePos.x - 0.5) * 2.0, -1.0, 1.0);
+    panX = clamp(t * maxPan * mouseInfluence, -maxPan, maxPan);
     baseline.x += panX;
     beamTarget.x += panX;
-    edgeSoftness = abs(panX) / max(w * 0.5, 1.0);
+    edgeSoftness = abs(panX) / max(maxPan, 1.0);
   }
 
   vec2 source = sourcePos;
