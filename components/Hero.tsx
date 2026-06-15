@@ -130,14 +130,14 @@ export default function Hero() {
           className="mt-10 flex flex-col sm:flex-row gap-3.5 justify-center items-center"
           style={{ opacity: 0 }}
         >
-          <MagneticButton href="/apply">
-            Apply for a spot
+          <MagneticButton href="#demo">
+            Try the live AI demo
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.4} aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </MagneticButton>
-          <MagneticButton href="#demo" variant="ghost" strength={0.25}>
-            Try the live AI demo
+          <MagneticButton href="/apply" variant="ghost" strength={0.25}>
+            Apply for a spot
           </MagneticButton>
         </div>
 

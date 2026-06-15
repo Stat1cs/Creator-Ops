@@ -1,12 +1,34 @@
 import type { MetadataRoute } from "next";
 
+const BASE_URL = "https://creator-ops.site";
+
 export default function sitemap(): MetadataRoute.Sitemap {
+  const lastModified = new Date();
+
   return [
     {
-      url: "https://creator-ops.site",
-      lastModified: new Date(),
+      url: BASE_URL,
+      lastModified,
       changeFrequency: "monthly",
       priority: 1,
+    },
+    {
+      url: `${BASE_URL}/apply`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/privacy`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${BASE_URL}/terms`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.3,
     },
   ];
 }
